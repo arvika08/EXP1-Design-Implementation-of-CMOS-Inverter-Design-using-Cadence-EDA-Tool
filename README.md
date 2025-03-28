@@ -1,124 +1,105 @@
-Ex No: 01     Design & Implementation of CMOS Inverter Design Using Cadence EDA Tools   
+# Ex No: 01 - Design & Implementation of CMOS Inverter Design Using Cadence EDA Tools
 
-Aim:
-To design and implement a CMOS inverter circuit using Cadence EDA tools, analyse its electrical characteristics, and understand the fundamental principles of CMOS technology, including the design process, layout, and simulation techniques.
+## Aim
+To design and implement a CMOS inverter circuit using Cadence EDA tools, analyze its electrical characteristics, and understand the fundamental principles of CMOS technology, including the design process, layout, and simulation techniques.
 
-Tools Required:
-•	Personal Computer
-•	Cadence Virtuoso Software
+## Tools Required
+- Personal Computer
+- Cadence Virtuoso Software
 
-S C H E M A T I C S I M U L A T I O N - PROCEDURE FOR CREATING THE SCHEMATIC SIMULATION -Commands to get into Cadence
+## Schematic Simulation - Procedure for Creating the Schematic Simulation
 
-1.	Right Click and open the terminal window
-2.	Type the following commands as follows and press enter.
-•	csh
-•	source /cadence/install/cshrc
-•	virtuoso 
-Procedure for Schematic simulation using Cadence
+### Commands to Get into Cadence
+1. Right-click and open the terminal window.
+2. Type the following commands and press enter:
+   ```sh
+   csh
+   source /cadence/install/cshrc
+   virtuoso
+   ```
+3. Two windows must open:
+   - **Virtuoso/Command Interpreter Window (CIW)**
+   - **“What’s New…” Window** (Close this window)
+4. Use the Virtuoso CIW window for further processing.
 
-1.	Now two windows must open i) virtuoso/command interpreter window ii)”Whats New…”
-2.	Close the 2nd window
-3.	Use 1st window i.e virtuoso window (CIW) for further processing.
-i.	Create a New Library
-ii.	Create Schematic Cell view.
-iii.	Create the Symbol for schematic Cell view.
-iv.	Create the test Cell view.
-v.	Analog simulation by spectre
+### Steps for Schematic Simulation using Cadence
+1. **Create a New Library**
+   - Go to `File → New → Library`
+   - Name the library (e.g., `VLSILAB_EXP_1`).
+   - Enable `Attach to an existing technology library`, click OK.
+   - Attach the library to `gpdk045`, then click OK.
 
+2. **Create Schematic Cell View**
+   - Open the Virtuoso CIW window.
+   - Navigate to `File → New → Cell View`.
+   - Set up the new file:
+     - **Library:** Select the one you created.
+     - **Cell:** Name the experiment (e.g., `Inverter_ViewSchematic`).
+     - **Type:** `Schematic`, then press OK.
+   - Add required components from the libraries and make connections:
+     - Use the shortcut key `I` to insert instances.
+     - Click `Browse` to open the library browser.
+     - Select components from `gpdk045` (e.g., `nmos1v`, `pmos1v`).
+     - Create input and output pins.
+     - Make connections using the fixed narrow wire key.
+     - Click `Check and Save`.
+   
+   ![Exp1_vlsi_1](https://github.com/user-attachments/assets/b2d6e421-8e3a-4120-9afc-0864a2d90f85)
 
-i)	Procedure for Creating New Library.
-•	File –New – Library
-•	Name: Give name for ur library Ex: VLSILAB_EXP_1
-•	Enable Attach to an existing technology library, Click OK
-•	Attach the library to the technology library gpdk045.Click OK
-ii)	Create Schematic Cell view.
-•	Go to 1st window i.e virtuoso (CIW)
-•	File-New-Cell view
-•	Setup the new file form
-	Library: Select the one you created.
-	Cell: Give the experiment name Ex: Inverter ViewSchematic
-	Type: Schematic press OK
-•	Add the required components from the libraries and make the connections.
-	Go to instance fixed menu or use shortcut key “I” from keypad to go instances
-	Click on browse. This opens the library browser
-	Now select the appropriate library for components like 
-	Gpdk45 ------------------------nmos1v, pmos1v
-	Create Input and Output pins
-	Make the connections by using fixed narrow wire key
-	Click Check and Save button
-![Exp1_vlsi_1](https://github.com/user-attachments/assets/b2d6e421-8e3a-4120-9afc-0864a2d90f85)
+3. **Creating the Symbol for Schematic Cell View**
+   - In the schematic window, execute:
+     - `Create → Cell View → From Cell View`
+     - Ensure that the Library Name, Cell Name, and View Name match the schematic, then press OK.
+   - The Symbol Generation form appears. Click OK if no changes are needed.
+   - A new window with a default symbol is created.
+   - Edit the symbol if necessary or continue.
+   - Execute `Create → Cell View → From Cell View`.
+   - Ensure the Library Name and Cell Name match those used for the schematic, then press OK.
+   - Check the pin positions and press OK.
+   - Modify the shape using `Create → Shape → Choose required options to edit`.
 
+   ![image](https://github.com/user-attachments/assets/e947dcda-b023-4668-a955-a5faf0949702)
 
+4. **Creating the New Test Cell View**
+   - Go to the CIW window and execute `File → New → Cell View`.
+   - Set up the new file:
+     - **Library:** Select the one you created.
+     - **Cell:** Name it differently from the schematic cell view (e.g., `Inverter_test`).
+     - **View:** `Schematic`.
+     - **Type:** `Schematic`, then press OK.
+   - Follow Step 2 to make the required connections.
 
- 
-iii)	Creating the Symbol for schematic Cell view
+   ![image](https://github.com/user-attachments/assets/0f1eb390-537e-4915-a9d5-6855883745d4)
 
-•	In the schematic window, execute 
-	Create – Cell view – From Cell view
-	The cell view from cell view window appears
-	Check Lib Name, Cell Name, From View name must be schematic Press ok
-•	Now Symbol generation form appears. Click Ok If No changes required
-•	A new window with with default symbol is created.
-•	Edit the symbol if you want to give actual symbol shape else continue.
-•	Execute Create-Cell view-from cell view
-•	Library Name and Cell Name must be same which you have used for schematic. Press OK
-•	Check for the position of pin side.Prss OK
-•	Edit for the shape by Create-Shape-Choose required options to edit.
+### Analog Simulation by Spectre
+1. In the test cell view window:
+   - Launch `ADE L (Analog Design Environment)`.
+   - Execute `Setup → Simulation/Directory/Host`.
+   - Set the simulation window to Spectre and click OK.
+   - Execute `Analysis → Choose`, select the type, set specifications, and press OK.
+   - Execute `Outputs → To Be Plotted → Select on Schematic`.
+   - Select the **Input Wire (Vin)** and **Output Wire (Vout)** from your test schematic using the mouse.
+   - Execute `Simulation → Netlist and Run`.
 
- ![image](https://github.com/user-attachments/assets/e947dcda-b023-4668-a955-a5faf0949702)
+   ![Exp1_vlsi_2](https://github.com/user-attachments/assets/bfeedd79-f84b-44c3-963d-6bd5c84227c3)
 
+### Transient Analysis Settings and Output
 
-iv)	Creating the new test cell view
-
-•	Go to CIW window, Execute File-New-Cell view
-	Setup the new file form
-	Library: Select the one you created.
-	Cell: Cell name must be different from the name used in schematic cell view. Ex: Inverter_test
-	View: Schematic
-	Type: Schematic press OK
-•	Follow the step 3(ii) d to make the required connections
-![image](https://github.com/user-attachments/assets/0f1eb390-537e-4915-a9d5-6855883745d4)
-
-
- 
-Analog simulation by SPECTRE.
-•	In test cell view window
-•	Launch – ADE L(Analog Design Environment)
-	Execute Setup—Simulation/directory/Host A new window opens
-	Set the simulation window to spectre and click ok
-	Execute Analysis – Choose. A window opens.
-	Select the type and set the specifications and press OK
-	Execute Output s—to be plotted – Select on Schematic
-	Then Select the INPUT WIRE(Vin ) and OUTPUT WIRE(Vout) from your test Schematic using mouse
-•	Execute Simulation -- Net list and Run
-![Exp1_vlsi_2](https://github.com/user-attachments/assets/bfeedd79-f84b-44c3-963d-6bd5c84227c3)
-
-
-For Transient Analysis Settings and Output
- 
- 
 ![exp1_vlsi_3](https://github.com/user-attachments/assets/0b82789e-eb03-42cb-9053-c23d2d47f7ed)
-
 
 ![exp1_vlsi_4](https://github.com/user-attachments/assets/ecaf633f-96a3-4628-b89e-e453beb164cc)
 
+### DC Analysis Settings and Output
 
- For DC Analysis Settings and Output
 ![image](https://github.com/user-attachments/assets/0ee74107-e03a-4204-b685-83ced611c993)
 
 ![image](https://github.com/user-attachments/assets/e6b8b6c7-378f-449e-82a5-72286f238b02)
 
- 
+## Results
+1. Successfully designed the CMOS inverter schematic using Cadence EDA tools.
+2. The simulation results demonstrated the correct logic operation of the inverter, where the output voltage switches between high (`Vdd`) and low (`0V`) levels, corresponding to the input voltage transitions.
+3. The Voltage Transfer Characteristic (VTC) curve was plotted, showing the relationship between input and output voltages.
 
-
-
-
- 
-
-Results:
-1.	Successfully designed the CMOS inverter schematic using Cadence EDA tools.
-2.	The simulation results demonstrated the correct logic operation of the inverter, where the output voltage switches between high (Vdd) and low (0V) levels, corresponding to the input voltage transitions.
-3.	The Voltage Transfer Characteristic (VTC) curve was plotted, showing the relationship between input and output voltages.
 
 
 
